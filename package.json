@@ -3,36 +3,42 @@
   "version": "0.0.0",
   "license": "AGPL-3.0-only",
   "bin": "dist/cli.js",
+  "type": "module",
+  "exports": "./dist/cli.js",
   "engines": {
-    "node": ">=14"
+    "node": ">=14.14"
   },
   "scripts": {
-    "build": "npx --no-install tsc",
+    "build": "tsc",
     "start": "npm run build && dist/cli.js",
     "pretest": "npm run build",
-    "test": "xo --fix && ava",
+    "test": "xo --fix && NODE_OPTIONS=--experimental-vm-modules npx jest",
     "prepare": "npx husky install"
   },
   "files": [
     "dist/cli.js"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KengoTODA/rotate-pat.git"
+  },
   "dependencies": {
     "ink": "^3.0.9",
     "meow": "^10.1.1",
     "react": "^16.14.0"
   },
   "devDependencies": {
-    "@ava/typescript": "^2.0.0",
+    "@jest/globals": "^27.0.6",
     "@semantic-release/git": "^9.0.0",
     "@sindresorhus/tsconfig": "^1.0.2",
     "@types/react": "^17.0.18",
-    "ava": "^3.15.0",
     "chalk": "^4.1.2",
     "eslint-config-xo-react": "^0.25.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.1",
     "ink-testing-library": "^2.1.0",
+    "jest": "^27.0.6",
     "semantic-release": "^17.4.4",
     "typescript": "^4.3.5",
     "xo": "^0.44.0"
@@ -41,17 +47,6 @@
     "extends": "xo-react",
     "rules": {
       "react/prop-types": "off"
-    }
-  },
-  "ava": {
-    "typescript": {
-      "extensions": [
-        "tsx"
-      ],
-      "rewritePaths": {
-        "source/": "dist/"
-      },
-      "compile": false
     }
   }
 }
