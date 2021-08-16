@@ -7,7 +7,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npx --no-install tsc",
     "start": "npm run build && dist/cli.js",
     "pretest": "npm run build",
     "test": "xo --fix && ava",
